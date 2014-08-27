@@ -1,0 +1,10 @@
+*.txt
+*.pyc
+*.xls
+*.py.swp
+build/
+excell/
+*.py~
+logError
+
+
