@@ -6,5 +6,6 @@ build/
 excell/
 *.py~
 logError
+*.sh
 
 
