@@ -33,6 +33,9 @@ def inicio(hora_base):
         hora = dif_horas(hora_base, hora_atual()) # diferença entre hora base e hora atual
         tempo = calc_tempo(hora)
 
+        for funcionario in funcionarios:
+            buscar_func(funcionario, tempo)
+
         
         # se hora atual >= a 19h00 encerra o programa
         if hora_atual().split(':')[0] == '19': 
@@ -44,8 +47,7 @@ def inicio(hora_base):
             hora_base = hora_atual()
             gerar_excel()
         
-        for funcionario in funcionarios:
-            buscar_func(funcionario, tempo)
+        
 
         time.sleep(60)
 	
