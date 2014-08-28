@@ -9,8 +9,6 @@ from os import system
 import platform
 from gerar_excel import gerar as gerar_excel
 
-
-
 hora_base = '7:00'
 
 funcionarios = ['Davi Roberto de Souza']
