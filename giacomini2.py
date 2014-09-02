@@ -8,12 +8,11 @@ import time
 from os import system
 import platform
 from gerar_excel import gerar as gerar_excel
+from funcionarios import lista_nomes
 
 hora_base = '7:00'
 
-funcionarios = ['Davi Roberto de Souza']
-                #'Daniel Alves Paraíso',
-                #'Giovanni Abraham Gobo']
+funcionarios = lista_nomes()
                 
 
 def limpar_tela():
@@ -31,12 +30,10 @@ def inicio(hora_base):
         hora = dif_horas(hora_base, hora_atual()) # diferença entre hora base e hora atual
         tempo = calc_tempo(hora)
 
-        for funcionario in funcionarios:
-            buscar_func(funcionario, tempo)
-
         
         # se hora atual >= a 19h00 encerra o programa
-        if hora_atual().split(':')[0] == '19': 
+        if hora_atual().split(':')[0] == '19':
+            
             import sys
             sys.exit(0)
 
@@ -44,7 +41,10 @@ def inicio(hora_base):
         if tempo > 30:
             hora_base = hora_atual()
             gerar_excel()
-        
+            
+
+        for funcionario in funcionarios:
+            buscar_func(funcionario, tempo)        
         
 
         time.sleep(60)

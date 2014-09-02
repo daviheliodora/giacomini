@@ -21,7 +21,7 @@ def exibir_pessoas(registro):
 
 def buscar_func(nome, tempo):
 
-    # retorna lista com as informações dos funcionarios
+    # retorna lista com as informações dos funcionarios da intranet
     registro = pega_info_usuarios(tempo)
 
     #registro = [['Davi Roberto de Souza', '2014-07-22', '13:00:00.0', 'Presente', '7241/6297']]
@@ -30,7 +30,7 @@ def buscar_func(nome, tempo):
     
     for func in registro:
         if func[0] == nome:
-            gerar_arquivo(nome) # gera os arquivos txt com o nome do funcionario
+            gerar_arquivo(nome)     # gera os arquivos txt com o nome do funcionario
             tratar_informacao(func) # verifica o status do func para salvar no txt
             
             exibir(func, tempo) # exibi as informações no console

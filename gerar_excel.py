@@ -4,6 +4,7 @@
 from tempfile import TemporaryFile
 from xlwt import Workbook, XFStyle
 from contabilizar_horas_trab import tot
+from funcionarios import lista_nomes
 import os
 
 dados = []
@@ -64,18 +65,6 @@ def pegar_meses_registrados():
 
     return out_list
 
-def gerar():
-
-    apagar_excel()
-    ler_arq_registro()
-    if pegar_meses_registrados():
-        book = Workbook()
-           
-        for mes in pegar_meses_registrados():
-            escrever_sheet(book, mes)
-        book.save('Registro.xls')
-        book.save(TemporaryFile())
-
 def escrever_sheet(book, mes):
 
     sheet = book.add_sheet(mes)
@@ -110,13 +99,35 @@ def escrever_sheet(book, mes):
                 sheet.write(linha, 4, out2)
                 sheet.write(linha, 5, total)
                 linha += 1
+
+def gerar():
+
+    apagar_excel()
+
+    for func in lista_nomes():
+        ler_arq_registro(func)
+        if pegar_meses_registrados():
+            book = Workbook()
+           
+            for mes in pegar_meses_registrados():
+                escrever_sheet(book, mes)
+            book.save('Registro.xls')
+            book.save(TemporaryFile())
+        dados = []
     
-def ler_arq_registro():
-    arq = open('Davi_Roberto_de_Souza.txt', 'r')
+def ler_arq_registro(func):
+    nome_arq = '_'.join(func.split(' '))
+    try:
+        arq = open(nome_arq+'.txt', 'r')
 
-    for linha in arq.read().split('\n'):
-        if linha != '':
-            dados.append(linha)
+        for linha in arq.read().split('\n'):
+            if linha != '':
+                dados.append(linha)
 
-    arq.close()
+        arq.close()
 
+    except IOError as err:
+        from atualizar_arquivo import gerar_arquivo
+        print 'Gerando arquivo',func
+        gerar_arquivo(func)
+    

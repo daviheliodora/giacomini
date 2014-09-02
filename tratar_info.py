@@ -7,7 +7,7 @@ from contabilizar_horas_trab import data_atual
 
 
 def pegar_ult_reg(nome):
-
+    '''Pega ultima informacao do arquivo txt'''
     inf = ''
 
     arq = open('_'.join(nome.split(' '))+'.txt', 'r')
@@ -20,7 +20,7 @@ def pegar_ult_reg(nome):
     return inf
 
 def verificar_situacao(nome):
-
+    ''' verifica qtos registro jah teve no dia'''
     inf = pegar_ult_reg(nome)
 
     if inf.split('/')[0] != data_atual():
@@ -29,7 +29,7 @@ def verificar_situacao(nome):
     return len(inf.split('/'))
 
 def inicio_expediente(func):
-
+    ''' Gera linha para novo registro no txt'''
     nome = func[0]
     data = func[1]
     h = func[2]

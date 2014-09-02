@@ -102,6 +102,6 @@ def exibir(func, tempo):
     print '   Trabalhado:',tot_hr
     print '============================================================='
 
-    
+    #gera txt com [data,nome,tot_hr]
     gerar_arq_tot_hr_trab([data,nome,tot_hr])
 
